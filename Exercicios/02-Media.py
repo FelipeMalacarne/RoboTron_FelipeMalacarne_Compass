@@ -5,10 +5,10 @@ def Media(num1, num2):
 
 
 def main():
-    nota1 = float(input())
-    nota2 = float(input()) 
+    nota1 = float(input("Informe a nota 1: "))
+    nota2 = float(input("Informe a nota 2: ")) 
 
-    print(Media(nota1, nota2))
+    print(f"A media das duas notas eh {Media (nota1, nota2)}")
 
 
 if __name__ == "__main__":
