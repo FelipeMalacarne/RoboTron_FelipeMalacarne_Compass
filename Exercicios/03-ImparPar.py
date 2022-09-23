@@ -1,3 +1,7 @@
+'''
+Construa um programa que recebe dois valores, soma esses valores e apresenta se o resultado é par ou impar
+'''
+
 #Retorna True se for par
 def isEven(n):
     return n % 2 == 0
@@ -10,5 +14,4 @@ def main():
     else:
         print("O numero eh Impar")
      
-if __name__ == '__main__':
-    main()
+main()

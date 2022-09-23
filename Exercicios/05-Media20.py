@@ -1,9 +1,13 @@
+'''
+Construa um programa que recebe 20 valores para X e no final apresenta a média aritmética dos valores pares digitados
+'''
+
 #inicializa lista
 numList = []
 
 #Função pega apenas números pares e monta a lista
-def getNumList(size):
-    for i in range(0, size):
+def getNumList(maxRange):
+    for i in range(0, maxRange):
         print(f"Informe o número de indice: {i}")
         num = int(input())
         if isEven(num):
@@ -17,14 +21,16 @@ def isEven(n):
 #calcula a média dado a lista como parametro
 def calcularMedia(list):
     soma = 0
-    counter = 0
     for i in range(0, len(list)):
         soma += list[i]
-        counter += 1
+    return soma/len(list)
 
-    return soma/counter
+def main():
+    #Requisita 20 numeros, monta a lista com os pares
+    getNumList(20)
+    #Calcula a média da lista com os pares
+    media = calcularMedia(numList)
 
-getNumList(20)
-media = calcularMedia(numList)
+    print(f"A média aritmética da lista de números é: {media}")
 
-print(f"A média aritmética da lista de números é: {media}")
+main()
