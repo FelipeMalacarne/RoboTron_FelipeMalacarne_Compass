@@ -2,8 +2,8 @@
 numList = []
 
 #Função pega apenas números pares e monta a lista
-def getNumList():
-    for i in range(0, 20):
+def getNumList(size):
+    for i in range(0, size):
         print(f"Informe o número de indice: {i}")
         num = int(input())
         if isEven(num):
@@ -13,7 +13,7 @@ def getNumList():
 
 def isEven(n):
     return n % 2 == 0
-    
+
 #calcula a média dado a lista como parametro
 def calcularMedia(list):
     soma = 0
@@ -24,7 +24,7 @@ def calcularMedia(list):
 
     return soma/counter
 
-getNumList()
+getNumList(20)
 media = calcularMedia(numList)
 
 print(f"A média aritmética da lista de números é: {media}")
