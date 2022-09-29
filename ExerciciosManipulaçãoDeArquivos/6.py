@@ -1,3 +1,6 @@
+'''
+Faça com que o programa printe apenas os primeiros dados dentro de edicao_atual, fase_atual, rodada_atual usando o JSON 2.
+'''
 import json
 
 #abre o .json e o armazena em um python dict
@@ -8,16 +11,28 @@ edicao_atual = campeonato_dict["edicao_atual"]
 fase_atual = campeonato_dict["fase_atual"]
 rodada_atual = campeonato_dict["rodada_atual"]
 
-edicao_first = list(edicao_atual.items())[0]
-fase_first = list(fase_atual.items())[0]
-rodada_first = list(rodada_atual.items())[0]
+lista = [edicao_atual, fase_atual, rodada_atual]
 
-print("edicao_atual")
-print(f"{edicao_first[0]} : {edicao_first[1]}")
-print(json.dumps(edicao_first, indent=2))
+for i in lista:
+    for j in i:
+        print(f"\"{j}\": \"{i[j]}\"")
+        break
 
-print("fase_atual")
-print(json.dumps(fase_atual, indent=2))
 
-print("rodada_atual")
-print(json.dumps(rodada_atual, indent=2))
+
+
+
+
+'''
+for i in edicao_atual:
+    print(f"\"{i}\": \"{edicao_atual[i]}\"")
+    break
+
+for i in fase_atual:
+    print(f"\"{i}\": \"{fase_atual[i]}\"")
+    break
+
+for i in rodada_atual:
+    print(f"\"{i}\": \"{rodada_atual[i]}\"")
+    break
+'''

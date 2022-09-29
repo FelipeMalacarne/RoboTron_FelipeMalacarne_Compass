@@ -1,3 +1,7 @@
+'''
+Pegue o arquivo JSON 1 e printe apenas o nome do time vencedor no terminal.
+'''
+
 import json
 
 #abre o .json e o armazena em um python dict

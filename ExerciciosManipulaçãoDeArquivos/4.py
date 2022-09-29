@@ -1,3 +1,7 @@
+'''
+Pegue o arquivo JSON 1 e printe apenas o nome do time vencedor no terminal.
+'''
+
 import json
 
 with open('partida.json', 'r', encoding='utf-8') as json_origem:

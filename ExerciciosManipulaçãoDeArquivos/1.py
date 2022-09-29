@@ -1,3 +1,8 @@
+'''
+Baixe o arquivo do link JSON 1, abra ele no vsCode com Python nomeando-o como partida guarde em uma variável e printe o JSON inteiro no terminal.
+'''
+
+
 import json
 
 #abre o .json e o armazena em um python dict
