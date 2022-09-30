@@ -21,8 +21,6 @@ for i in lista:
 
 
 
-
-
 '''
 for i in edicao_atual:
     print(f"\"{i}\": \"{edicao_atual[i]}\"")
