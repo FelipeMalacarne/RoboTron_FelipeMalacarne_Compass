@@ -1,11 +1,12 @@
 '''
-Pegue o arquivo JSON 1 e printe apenas o nome do time vencedor no terminal.
+Do JSON 1 Guarde apenas o Nome do Estádio, o Placar e o Status do jogo dentro de variáveis e mostre-as..
 '''
 
 import json
 
 with open('partida.json', 'r', encoding='utf-8') as json_origem:
     partida_dict = json.load(json_origem)
+
     nome_estadio = partida_dict['copa-do-brasil'][0]['estadio']['nome_popular']
     placar = partida_dict['copa-do-brasil'][0]['placar']
     status = partida_dict['copa-do-brasil'][0]['status']

@@ -1,7 +1,6 @@
 '''
-Pegue o arquivo JSON 1 e printe apenas o nome do time vencedor no terminal.
+No JSON 1 printe todas as chaves e valores do time visitante
 '''
-
 import json
 
 with open('partida.json', 'r', encoding='utf-8') as json_origem:
