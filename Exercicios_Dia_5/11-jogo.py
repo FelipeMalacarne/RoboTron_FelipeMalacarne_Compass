@@ -3,13 +3,13 @@ Leia a hora inicial e a hora final de um jogo. A seguir calcule a duração do j
 '''
 
 def main():
-    horaInicial = int(input("Informe a hora inicial "))
-    horaFinal = int(input("Informe a hora final "))
+    hora_inicial = int(input("Informe a hora inicial "))
+    hora_final = int(input("Informe a hora final "))
 
-    if horaFinal > horaInicial:
-        duracao = horaFinal - horaInicial
+    if hora_final > hora_inicial:
+        duracao = hora_final - hora_inicial
     else:
-        duracao = (horaFinal + 24) - horaInicial
+        duracao = (hora_final + 24) - hora_inicial
 
     print(f"O JOGO DUROU {duracao} HORA(S)")
 main()

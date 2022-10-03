@@ -7,12 +7,12 @@ def isEven(n):
     return n % 2 == 0
 
 def main():
-    maxRange = int(input("Informe um valor inteiro maior que 2: "))
+    max_range = int(input("Informe um valor inteiro maior que 2: "))
 
-    print(f"O os números ímpares entre 2 e {maxRange} são: ")
+    print(f"O os números ímpares entre 2 e {max_range} são: ")
 
     #Itera por todos números até maxRange, mostra os não-pares
-    for i in range(2, maxRange):
+    for i in range(2, max_range):
         if not isEven(i):
             print(i)
 
