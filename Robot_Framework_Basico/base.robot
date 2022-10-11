@@ -6,6 +6,7 @@ Library           RequestsLibrary
 ${URL} =     http://localhost:3000
 &{login}=    email=fulano@qa.com    password=teste       
 ${response}
+${user_id}  
 
 
 *** Test Cases ***
@@ -17,8 +18,7 @@ Cenario: GET Todos os Usuarios 200
     Realizar Login
     GET Endpoint /Usuarios
     Validar Status Code "200"
-    Validar Quantidade "${4}"
-    Printar Response
+    Validar Quantidade "${1}"
 
 Cenario: GET Todos produtos 200
     [Tags]    GET
@@ -33,7 +33,6 @@ Cenario: GET produto por Id 200
     GET Endpoint /produtos/"BeeJh5lz3k6kSIzA"
     Validar Status Code "200"
 
-##Aula dia 5
 Cenario: POST Cadastrar Usuario 201
     [Tags]    POST
     Criar Sessao
@@ -41,19 +40,17 @@ Cenario: POST Cadastrar Usuario 201
     Validar Status Code "201"
     Validar Se Mensagem Contem "sucesso"
 
-Cenario: PUT Editar Usuario 200
+Cenario: PUT Editar Usuario Criado 200
     [Tags]    PUT
     Criar Sessao
     PUT Endpoint /Usuarios
     Validar Status Code "200"
     
-Cenario: DELETE Usuario 200
+Cenario: DELETE Usuario Editado 200
     [Tags]    DELETE
     Criar Sessao
     DELETE Endpoint /usuarios
     Validar Status Code "200"
-
-
 
 *** Keywords ***
 Criar Sessao          
@@ -74,9 +71,9 @@ Validar Status Code "${statuscode}"
     Should Be True             ${response.status_code} == ${statuscode}
 
 POST Endpoint /Usuarios
-    &{payload}                 Create Dictionary    nome=felipe.malacarne12   password=123    email=feleepe12.m@gmail.com    administrador=true   
+    &{payload}                 Create Dictionary    nome=felipe.malacarne  password=123    email=felipe.malacarne@gmail.com    administrador=true   
     ${response}                POST On Session    serverest    /usuarios    data=&{payload}
-    Log To Console             Response:${response.content}
+    Set Global Variable        ${user_id}    ${response.json()["_id"]}
     Set Global Variable        ${response} 
 
 
@@ -88,14 +85,12 @@ POST Endpoint /Usuarios
 #     Set Global Variable    ${response}
 
 PUT Endpoint /usuarios
-    &{payload}                  Create Dictionary    nome=saaas    password=123    email=felllipe.m@gmail.com    administrador=true   
-    ${response}                 PUT On Session    serverest    /usuarios/qF56BeDh6AfIq4WW    data=&{payload}
-    Log To Console              ${response.content}
+    &{payload}                  Create Dictionary    nome=cobalto    password=123    email=cobalto60@gmail.com    administrador=true   
+    ${response}                 PUT On Session    serverest    /usuarios/${user_id}   data=&{payload}
     Set Global Variable         ${response} 
 
 DELETE Endpoint /usuarios
-    ${response}                 DELETE On Session    serverest    /usuarios/qF56BeDh6AfIq4WW
-    Log To Console              ${response.content}
+    ${response}                 DELETE On Session    serverest    /usuarios/${user_id}
     Set Global Variable         ${response} 
 
 Realizar Login
@@ -108,5 +103,3 @@ Validar Quantidade "${qnt}"
 Validar Se Mensagem Contem "${palavra}"
     Should Contain    ${response.json()["message"]}    ${palavra}
 
-Printar Response
-    Log to Console    ${response.json()["usuarios"][2]["nome"]}

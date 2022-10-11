@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.7 on win32)" generated="20221011 11:33:39.098" rpa="false" schemaversion="3">
+<suite id="s1" name="Robot Framework Basico" source="C:\Users\felip\pb\Sprint 4\RoboTron_FelipeMalacarne_Compass\Robot_Framework_Basico">
+<suite id="s1-s1" name="Base" source="C:\Users\felip\pb\Sprint 4\RoboTron_FelipeMalacarne_Compass\Robot_Framework_Basico\base.robot">
+<test id="s1-s1-t1" name="Cenario: GET Todos os Usuarios 200" line="15">
+<kw name="Criar Sessao">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>serverest</arg>
+<arg>${URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20221011 11:33:39.253" level="INFO">Creating Session using : alias=serverest, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20221011 11:33:39.252" endtime="20221011 11:33:39.254"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.251" endtime="20221011 11:33:39.254"/>
+</kw>
+<kw name="Realizar Login">
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${login}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20221011 11:33:39.265" level="INFO">POST Request : url=http://localhost:3000/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '47', 'Content-Type': 'application/json'} 
+ body=b'{"email": "fulano@qa.com", "password": "teste"}' 
+ </msg>
+<msg timestamp="20221011 11:33:39.267" level="INFO">POST Response : url=http://localhost:3000/login 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-moesif-transaction-id': '3bf89881-4f7e-4112-9ae9-107894089fbc', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '265', 'Date': 'Tue, 11 Oct 2022 14:33:39 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjY1NDk4ODE5LCJleHAiOjE2NjU0OTk0MTl9.tEPz-PMbXWtyJVV5aNMj-X8_kneAxsF-Lbb9ZDwQnjI"
+} 
+ </msg>
+<msg timestamp="20221011 11:33:39.268" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221011 11:33:39.255" endtime="20221011 11:33:39.270"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221011 11:33:39.270" endtime="20221011 11:33:39.272"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.255" endtime="20221011 11:33:39.272"/>
+</kw>
+<kw name="GET Endpoint /Usuarios">
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20221011 11:33:39.278" level="INFO">GET Request : url=http://localhost:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20221011 11:33:39.282" level="INFO">GET Response : url=http://localhost:3000/usuarios 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-moesif-transaction-id': '0bb12064-0c88-4352-9441-04482ba57acf', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '253', 'Date': 'Tue, 11 Oct 2022 14:33:39 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "quantidade": 1,
+    "usuarios": [
+        {
+            "nome": "Fulano da Silva",
+            "email": "fulano@qa.com",
+            "password": "teste",
+            "administrador": "true",
+            "_id": "0uxuPY0cbmQhpEz1"
+        }
+    ]
+} 
+ </msg>
+<msg timestamp="20221011 11:33:39.284" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221011 11:33:39.273" endtime="20221011 11:33:39.284"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20221011 11:33:39.285" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221011 11:33:39.285" endtime="20221011 11:33:39.287"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.272" endtime="20221011 11:33:39.287"/>
+</kw>
+<kw name="Validar Status Code &quot;200&quot;" sourcename="Validar Status Code &quot;${statuscode}&quot;">
+<kw name="Should Be True" library="BuiltIn">
+<arg>${response.status_code} == ${statuscode}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20221011 11:33:39.289" endtime="20221011 11:33:39.292"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.288" endtime="20221011 11:33:39.292"/>
+</kw>
+<kw name="Validar Quantidade &quot;${1}&quot;" sourcename="Validar Quantidade &quot;${qnt}&quot;">
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${response.json()["quantidade"]}</arg>
+<arg>${qnt}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221011 11:33:39.293" endtime="20221011 11:33:39.295"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.293" endtime="20221011 11:33:39.295"/>
+</kw>
+<tag>GET</tag>
+<status status="PASS" starttime="20221011 11:33:39.250" endtime="20221011 11:33:39.296"/>
+</test>
+<test id="s1-s1-t2" name="Cenario: GET Todos produtos 200" line="23">
+<kw name="Criar Sessao">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>serverest</arg>
+<arg>${URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20221011 11:33:39.302" level="INFO">Creating Session using : alias=serverest, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20221011 11:33:39.302" endtime="20221011 11:33:39.304"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.300" endtime="20221011 11:33:39.304"/>
+</kw>
+<kw name="Realizar Login">
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${login}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20221011 11:33:39.310" level="INFO">POST Request : url=http://localhost:3000/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '47', 'Content-Type': 'application/json'} 
+ body=b'{"email": "fulano@qa.com", "password": "teste"}' 
+ </msg>
+<msg timestamp="20221011 11:33:39.312" level="INFO">POST Response : url=http://localhost:3000/login 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-moesif-transaction-id': '62bc87ac-91e4-4d75-b0bf-c61bf9134bc8', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '265', 'Date': 'Tue, 11 Oct 2022 14:33:39 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjY1NDk4ODE5LCJleHAiOjE2NjU0OTk0MTl9.tEPz-PMbXWtyJVV5aNMj-X8_kneAxsF-Lbb9ZDwQnjI"
+} 
+ </msg>
+<msg timestamp="20221011 11:33:39.314" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221011 11:33:39.306" endtime="20221011 11:33:39.316"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221011 11:33:39.316" endtime="20221011 11:33:39.318"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.305" endtime="20221011 11:33:39.318"/>
+</kw>
+<kw name="GET Endpoint /produtos">
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/produtos</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20221011 11:33:39.324" level="INFO">GET Request : url=http://localhost:3000/produtos 
+ path_url=/produtos 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20221011 11:33:39.325" level="INFO">GET Response : url=http://localhost:3000/produtos 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-moesif-transaction-id': 'c52e4a3a-3c86-48bd-84ba-6a60a153eef7', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '435', 'Date': 'Tue, 11 Oct 2022 14:33:39 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "quantidade": 2,
+    "produtos": [
+        {
+            "nome": "Logitech MX Vertical",
+            "preco": 470,
+            "descricao": "Mouse",
+            "quantidade": 382,
+            "_id": "BeeJh5lz3k6kSIzA"
+        },
+        {
+            "nome": "Samsung 60 polegadas",
+            "preco": 5240,
+            "descricao": "TV",
+            "quantidade": 49977,
+            "_id": "K6leHdftCeOJj8BJ"
+        }
+    ]
+} 
+ </msg>
+<msg timestamp="20221011 11:33:39.326" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221011 11:33:39.320" endtime="20221011 11:33:39.327"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221011 11:33:39.327" endtime="20221011 11:33:39.328"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.319" endtime="20221011 11:33:39.328"/>
+</kw>
+<tag>GET</tag>
+<status status="PASS" starttime="20221011 11:33:39.297" endtime="20221011 11:33:39.329"/>
+</test>
+<test id="s1-s1-t3" name="Cenario: GET produto por Id 200" line="29">
+<kw name="Criar Sessao">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>serverest</arg>
+<arg>${URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20221011 11:33:39.334" level="INFO">Creating Session using : alias=serverest, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20221011 11:33:39.333" endtime="20221011 11:33:39.337"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.333" endtime="20221011 11:33:39.338"/>
+</kw>
+<kw name="Realizar Login">
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/login</arg>
+<arg>json=${login}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20221011 11:33:39.344" level="INFO">POST Request : url=http://localhost:3000/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '47', 'Content-Type': 'application/json'} 
+ body=b'{"email": "fulano@qa.com", "password": "teste"}' 
+ </msg>
+<msg timestamp="20221011 11:33:39.344" level="INFO">POST Response : url=http://localhost:3000/login 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-moesif-transaction-id': '71121618-5b58-403b-bce2-4b9a6bb49fdf', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '265', 'Date': 'Tue, 11 Oct 2022 14:33:39 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNjY1NDk4ODE5LCJleHAiOjE2NjU0OTk0MTl9.tEPz-PMbXWtyJVV5aNMj-X8_kneAxsF-Lbb9ZDwQnjI"
+} 
+ </msg>
+<msg timestamp="20221011 11:33:39.346" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221011 11:33:39.339" endtime="20221011 11:33:39.348"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20221011 11:33:39.349" endtime="20221011 11:33:39.350"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.338" endtime="20221011 11:33:39.351"/>
+</kw>
+<kw name="GET Endpoint /produtos/&quot;BeeJh5lz3k6kSIzA&quot;" sourcename="GET Endpoint /produtos/&quot;${_id}&quot;">
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/produtos/${_id}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20221011 11:33:39.360" level="INFO">GET Request : url=http://localhost:3000/produtos/BeeJh5lz3k6kSIzA 
+ path_url=/produtos/BeeJh5lz3k6kSIzA 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20221011 11:33:39.362" level="INFO">GET Response : url=http://localhost:3000/produtos/BeeJh5lz3k6kSIzA 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-moesif-transaction-id': 'f71ba240-f7e9-4e20-848e-1d818bf016b6', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '136', 'Date': 'Tue, 11 Oct 2022 14:33:39 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "nome": "Logitech MX Vertical",
+    "preco": 470,
+    "descricao": "Mouse",
+    "quantidade": 382,
+    "_id": "BeeJh5lz3k6kSIzA"
+} 
+ </msg>
+<msg timestamp="20221011 11:33:39.364" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221011 11:33:39.354" endtime="20221011 11:33:39.368"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20221011 11:33:39.371" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221011 11:33:39.369" endtime="20221011 11:33:39.372"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.352" endtime="20221011 11:33:39.373"/>
+</kw>
+<kw name="Validar Status Code &quot;200&quot;" sourcename="Validar Status Code &quot;${statuscode}&quot;">
+<kw name="Should Be True" library="BuiltIn">
+<arg>${response.status_code} == ${statuscode}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20221011 11:33:39.375" endtime="20221011 11:33:39.377"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.374" endtime="20221011 11:33:39.378"/>
+</kw>
+<tag>GET</tag>
+<status status="PASS" starttime="20221011 11:33:39.331" endtime="20221011 11:33:39.378"/>
+</test>
+<test id="s1-s1-t4" name="Cenario: POST Cadastrar Usuario 201" line="36">
+<kw name="Criar Sessao">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>serverest</arg>
+<arg>${URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20221011 11:33:39.388" level="INFO">Creating Session using : alias=serverest, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20221011 11:33:39.385" endtime="20221011 11:33:39.391"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.384" endtime="20221011 11:33:39.392"/>
+</kw>
+<kw name="POST Endpoint /Usuarios">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{payload}</var>
+<arg>nome=felipe.malacarne</arg>
+<arg>password=123</arg>
+<arg>email=felipe.malacarne@gmail.com</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221011 11:33:39.395" level="INFO">&amp;{payload} = { nome=felipe.malacarne | password=123 | email=felipe.malacarne@gmail.com | administrador=true }</msg>
+<status status="PASS" starttime="20221011 11:33:39.394" endtime="20221011 11:33:39.397"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios</arg>
+<arg>data=&amp;{payload}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20221011 11:33:39.406" level="INFO">POST Request : url=http://localhost:3000/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '88', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=nome=felipe.malacarne&amp;password=123&amp;email=felipe.malacarne%40gmail.com&amp;administrador=true 
+ </msg>
+<msg timestamp="20221011 11:33:39.407" level="INFO">POST Response : url=http://localhost:3000/usuarios 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-moesif-transaction-id': '62494cd1-22a3-4c43-a66c-aa7efe08dcbd', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'Date': 'Tue, 11 Oct 2022 14:33:39 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Cadastro realizado com sucesso",
+    "_id": "vVOJbXK8auJ9mYCt"
+} 
+ </msg>
+<msg timestamp="20221011 11:33:39.409" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20221011 11:33:39.398" endtime="20221011 11:33:39.412"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${user_id}</arg>
+<arg>${response.json()["_id"]}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20221011 11:33:39.414" level="INFO">${user_id} = vVOJbXK8auJ9mYCt</msg>
+<status status="PASS" starttime="20221011 11:33:39.412" endtime="20221011 11:33:39.416"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20221011 11:33:39.417" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20221011 11:33:39.416" endtime="20221011 11:33:39.419"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.392" endtime="20221011 11:33:39.419"/>
+</kw>
+<kw name="Validar Status Code &quot;201&quot;" sourcename="Validar Status Code &quot;${statuscode}&quot;">
+<kw name="Should Be True" library="BuiltIn">
+<arg>${response.status_code} == ${statuscode}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20221011 11:33:39.421" endtime="20221011 11:33:39.423"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.420" endtime="20221011 11:33:39.424"/>
+</kw>
+<kw name="Validar Se Mensagem Contem &quot;sucesso&quot;" sourcename="Validar Se Mensagem Contem &quot;${palavra}&quot;">
+<kw name="Should Contain" library="BuiltIn">
+<arg>${response.json()["message"]}</arg>
+<arg>${palavra}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20221011 11:33:39.425" endtime="20221011 11:33:39.428"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.424" endtime="20221011 11:33:39.428"/>
+</kw>
+<tag>POST</tag>
+<status status="PASS" starttime="20221011 11:33:39.381" endtime="20221011 11:33:39.429"/>
+</test>
+<test id="s1-s1-t5" name="Cenario: PUT Editar Usuario Criado 200" line="43">
+<kw name="Criar Sessao">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>serverest</arg>
+<arg>${URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20221011 11:33:39.436" level="INFO">Creating Session using : alias=serverest, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20221011 11:33:39.435" endtime="20221011 11:33:39.438"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.433" endtime="20221011 11:33:39.438"/>
+</kw>
+<kw name="PUT Endpoint /usuarios">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{payload}</var>
+<arg>nome=cobalto</arg>
+<arg>password=123</arg>
+<arg>email=cobalto60@gmail.com</arg>
+<arg>administrador=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20221011 11:33:39.441" level="INFO">&amp;{payload} = { nome=cobalto | password=123 | email=cobalto60@gmail.com | administrador=true }</msg>
+<status status="PASS" starttime="20221011 11:33:39.440" endtime="20221011 11:33:39.443"/>
+</kw>
+<kw name="PUT On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios/${user_id}</arg>
+<arg>data=&amp;{payload}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20221011 11:33:39.453" level="INFO">PUT Request : url=http://localhost:3000/usuarios/vVOJbXK8auJ9mYCt 
+ path_url=/usuarios/vVOJbXK8auJ9mYCt 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '72', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=nome=cobalto&amp;password=123&amp;email=cobalto60%40gmail.com&amp;administrador=true 
+ </msg>
+<msg timestamp="20221011 11:33:39.454" level="INFO">PUT Response : url=http://localhost:3000/usuarios/vVOJbXK8auJ9mYCt 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-moesif-transaction-id': 'f6e14a3d-e48a-428a-ab14-adedadce39ea', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '50', 'Date': 'Tue, 11 Oct 2022 14:33:39 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Registro alterado com sucesso"
+} 
+ </msg>
+<msg timestamp="20221011 11:33:39.456" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221011 11:33:39.444" endtime="20221011 11:33:39.458"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20221011 11:33:39.458" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221011 11:33:39.458" endtime="20221011 11:33:39.460"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.439" endtime="20221011 11:33:39.460"/>
+</kw>
+<kw name="Validar Status Code &quot;200&quot;" sourcename="Validar Status Code &quot;${statuscode}&quot;">
+<kw name="Should Be True" library="BuiltIn">
+<arg>${response.status_code} == ${statuscode}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20221011 11:33:39.462" endtime="20221011 11:33:39.464"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.461" endtime="20221011 11:33:39.465"/>
+</kw>
+<tag>PUT</tag>
+<status status="PASS" starttime="20221011 11:33:39.431" endtime="20221011 11:33:39.466"/>
+</test>
+<test id="s1-s1-t6" name="Cenario: DELETE Usuario Editado 200" line="49">
+<kw name="Criar Sessao">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>serverest</arg>
+<arg>${URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20221011 11:33:39.477" level="INFO">Creating Session using : alias=serverest, url=http://localhost:3000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20221011 11:33:39.476" endtime="20221011 11:33:39.479"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.474" endtime="20221011 11:33:39.480"/>
+</kw>
+<kw name="DELETE Endpoint /usuarios">
+<kw name="DELETE On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>serverest</arg>
+<arg>/usuarios/${user_id}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<msg timestamp="20221011 11:33:39.490" level="INFO">DELETE Request : url=http://localhost:3000/usuarios/vVOJbXK8auJ9mYCt 
+ path_url=/usuarios/vVOJbXK8auJ9mYCt 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20221011 11:33:39.493" level="INFO">DELETE Response : url=http://localhost:3000/usuarios/vVOJbXK8auJ9mYCt 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-moesif-transaction-id': 'd3b4cf04-edf9-430c-91d1-13de5935b43f', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '51', 'Date': 'Tue, 11 Oct 2022 14:33:39 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={
+    "message": "Registro excluído com sucesso"
+} 
+ </msg>
+<msg timestamp="20221011 11:33:39.494" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221011 11:33:39.481" endtime="20221011 11:33:39.497"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20221011 11:33:39.498" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20221011 11:33:39.497" endtime="20221011 11:33:39.500"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.480" endtime="20221011 11:33:39.501"/>
+</kw>
+<kw name="Validar Status Code &quot;200&quot;" sourcename="Validar Status Code &quot;${statuscode}&quot;">
+<kw name="Should Be True" library="BuiltIn">
+<arg>${response.status_code} == ${statuscode}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20221011 11:33:39.507" endtime="20221011 11:33:39.509"/>
+</kw>
+<status status="PASS" starttime="20221011 11:33:39.505" endtime="20221011 11:33:39.509"/>
+</kw>
+<tag>DELETE</tag>
+<status status="PASS" starttime="20221011 11:33:39.469" endtime="20221011 11:33:39.510"/>
+</test>
+<doc>Arquvo simples para realizar requsisões HTTP em APIs</doc>
+<status status="PASS" starttime="20221011 11:33:39.140" endtime="20221011 11:33:39.512"/>
+</suite>
+<status status="PASS" starttime="20221011 11:33:39.102" endtime="20221011 11:33:39.517"/>
+</suite>
+<statistics>
+<total>
+<stat pass="6" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">DELETE</stat>
+<stat pass="3" fail="0" skip="0">GET</stat>
+<stat pass="1" fail="0" skip="0">POST</stat>
+<stat pass="1" fail="0" skip="0">PUT</stat>
+</tag>
+<suite>
+<stat pass="6" fail="0" skip="0" id="s1" name="Robot Framework Basico">Robot Framework Basico</stat>
+<stat pass="6" fail="0" skip="0" id="s1-s1" name="Base">Robot Framework Basico.Base</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
