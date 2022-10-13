@@ -13,17 +13,13 @@ pip install robotframework
 ```
 - Libraries utilizadas:
     - [Browser Library](https://github.com/MarketSquare/robotframework-browser)
-        ```
-        pip install robotframework-browser
-        ```
- 
+
     - [Robotframework-faker](https://github.com/guykisel/robotframework-faker)
-        ```
-        pip install robotframework-faker
-        ```
 
     - [HTTPRequests Library](https://github.com/MarketSquare/robotframework-requests#readme)
         ```
+        pip install robotframework-browser
+        pip install robotframework-faker
         pip install robotframework-requests
         ```
 ---
