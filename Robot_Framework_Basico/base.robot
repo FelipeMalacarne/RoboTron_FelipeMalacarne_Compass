@@ -51,16 +51,28 @@ Cenario: DELETE Usuario Editado 200
     Criar Sessao
     DELETE Endpoint /usuarios
     Validar Status Code "200"
+
 Cenario: POST Realizar Login 200
     [tags]    POSTLOGIN
     Criar Sessao
     POST Endpoint /login
     Validar Status Code "200"
+
 Cenario: POST Criar Produto 201
     [Tags]    POSTPRODUTO
     Criar Sessao
+    Fazer Login e Armazenar Token
     POST Endpoint /produtos
     Validar Status Code "201"
+
+Cenario: DELETE Excluir Produto 200
+    [Tags]    DELETEPRODUTO
+    Criar Sessao
+    Fazer Login e Armazenar Token
+    Criar Produto e Armazenar ID
+    DELETE Endpoint /produtos
+    Validar Status Code "200"
+
 
 *** Keywords ***
 Criar Sessao          
@@ -69,7 +81,7 @@ Validar Status Code "${statuscode}"
     Should Be True             ${response.status_code} == ${statuscode}
 
 Validar Quantidade "${qnt}"
-    Should Be Equal    ${response.json()["quantidade"]}    ${qnt}
+    Should Be Equal            ${response.json()["quantidade"]}    ${qnt}
 Validar Se Mensagem Contem "${palavra}"
     Should Contain    ${response.json()["message"]}    ${palavra}
 
