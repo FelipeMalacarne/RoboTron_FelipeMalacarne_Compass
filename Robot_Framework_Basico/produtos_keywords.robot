@@ -3,6 +3,7 @@ Documentation        Keywords e Variaveis para o endpoint /produtos
 Library              RequestsLibrary
 
 *** Variables ***
+${token_auth} 
 
 *** Keywords ***
 GET Endpoint /produtos

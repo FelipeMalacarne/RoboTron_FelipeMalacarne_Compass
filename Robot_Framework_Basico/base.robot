@@ -4,7 +4,7 @@ Library           RequestsLibrary
 Resource          usuarios_keywords.robot
 Resource          produtos_keywords.robot
 Resource          login_keywords.robot
-
+Resource          common.robot
 *** Variables ***
 ${URL} =     http://localhost:3000
 &{login}=    email=fulano@qa.com    password=teste       
@@ -20,7 +20,6 @@ Cenario: GET Todos os Usuarios 200
     Criar Sessao
     GET Endpoint /Usuarios
     Validar Status Code "200"
-    Validar Quantidade "${1}"
 
 Cenario: GET Todos produtos 200
     [Tags]    GET
@@ -73,13 +72,16 @@ Cenario: DELETE Excluir Produto 200
     DELETE Endpoint /produtos
     Validar Status Code "200"
 
+Cenario: POST Criar Usuario De Massa Estatica 201
+    [Tags]    POSTUSUARIOESTATICO
+    Criar Sessao
+    Criar Usuario Estatico Valido
+    POST Endpoint /Usuarios
+    Validar Status Code "201"
 
 *** Keywords ***
 Criar Sessao          
     Create Session              serverest    ${URL}
-Validar Status Code "${statuscode}"
-    Should Be True             ${response.status_code} == ${statuscode}
-
 Validar Quantidade "${qnt}"
     Should Be Equal            ${response.json()["quantidade"]}    ${qnt}
 Validar Se Mensagem Contem "${palavra}"
