@@ -36,6 +36,16 @@ Cenario: Geral Rota Usuarios
     DELETE Endpoint /usuarios Ultimo ID               #Deletar usuario Criado
     GET Usuario por ID 400                            #Deve retornar 400 pois o usuario foi deletado
 
+Cenario: User Stories Login
+    [Tags]    STORIES
+    Criar Sessao
+    POST Login User Invalido 401            #Usuários não cadastrados não deverão conseguir autenticar;
+    POST Login User Sem Senha 400           #Usuários com senha inválida não deverão conseguir autenticar;
+    POST Login Usuario Valido 200           #Usuários existentes e com a senha correta deverão ser autenticados;
+    Validar Ter Logado                      #A autenticação deverá gerar um token Bearer;
+
+
+
 
 Cenario: GET Todos os Usuarios 200
     [Tags]    GET
