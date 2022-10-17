@@ -15,7 +15,28 @@ ${user_id}
 
 *** Test Cases ***
 
-##Aula dia 4
+Cenario: Geral Rota Login
+    [Tags]    ROTAS
+    Criar Sessao
+    POST Login User Invalido 401                     ## A documentação não menciona o status code 401
+    POST Login User Sem Senha 400
+    POST Login User Sem Email 400
+    POST Login Usuario Valido 200
+    Validar Ter Logado
+
+Cenario: Geral Rota Usuarios
+    [Tags]    ROTAS
+    Criar Sessao
+    GET Endpoint /Usuarios
+    POST Usuarios User Cadastrado 400 
+    POST Usuarios User Sem Email 400
+    POST Usuarios User Sem Senha 400
+    POST Usuarios User Valido 201                     #Deve retornar 201 e criar usuário com sucesso
+    GET Usuario por ID 200                            #Deve retornar o json do usuario criado
+    DELETE Endpoint /usuarios Ultimo ID               #Deletar usuario Criado
+    GET Usuario por ID 400                            #Deve retornar 400 pois o usuario foi deletado
+
+
 Cenario: GET Todos os Usuarios 200
     [Tags]    GET
     Criar Sessao
@@ -49,7 +70,7 @@ Cenario: PUT Editar Usuario Criado 200
 Cenario: DELETE Usuario Editado 200
     [Tags]    DELETE
     Criar Sessao
-    DELETE Endpoint /usuarios
+    DELETE Endpoint /usuarios Ultimo ID
     Validar Status Code "200"
 
 Cenario: POST Realizar Login 200
@@ -80,22 +101,6 @@ Cenario: POST Criar Usuario De Massa Estatica 201
     POST Endpoint /Usuarios
     Validar Status Code "201"
 
-Cenario: Geral Rota Login
-    [Tags]    ROTAS
-    Criar Sessao
-    POST Login User Invalido 401    ## A documentação não menciona o status code 401
-    POST Login User Sem Senha 400
-    POST Login User Sem Email 400
-    POST Login Usuario Valido 400
-    Validar Ter Logado
-
-Cenario: Geral Rota Usuarios
-    [Tags]    ROTAS
-    Criar Sessao
-    GET Endpoint /Usuarios
-    # POST Usuarios User Cadastrado 
-
-
 
 
 *** Keywords ***
@@ -104,7 +109,7 @@ Criar Sessao
 Validar Quantidade "${qnt}"
     Should Be Equal            ${response.json()["quantidade"]}    ${qnt}
 Validar Se Mensagem Contem "${palavra}"
-    Should Contain    ${response.json()["message"]}    ${palavra}
+    Should Contain             ${response.json()["message"]}    ${palavra}
 
     
 

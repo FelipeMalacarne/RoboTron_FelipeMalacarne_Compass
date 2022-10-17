@@ -46,7 +46,7 @@ POST Login User Sem Email 400
     POST Endpoint /login
     Status Should Be    400
 
-POST Login Usuario Valido 400
+POST Login Usuario Valido 200
     ${json}        Importar Json Estatico    login.json
     ${payload}    Set Variable    ${json["user_valido"]}
     Set Global Variable    ${payload}

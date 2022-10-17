@@ -17,3 +17,8 @@ Importar Json Estatico
     ${arquivo}        Get File    ${EXECDIR}/jsons/${nome_arquivo}
     ${data}           Evaluate    json.loads('''${arquivo}''')    json
     [Return]          ${data}
+
+Criar Payload Estatico "${json}" "${key}"
+    ${json}        Importar Json Estatico    ${json}
+    ${payload}    Set Variable    ${json["${key}"]}
+    Set Global Variable    ${payload}
