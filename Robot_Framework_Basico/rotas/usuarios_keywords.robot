@@ -14,6 +14,10 @@ GET Endpoint /Usuarios
     ${response}                 GET On Session    serverest    /usuarios
     Set Global Variable         ${response} 
 
+
+Validar GET Usuarios
+    Status Should Be        200
+    Should Not Be Empty     ${response.json()["usuarios"]}
 POST Endpoint /Usuarios
     ${response}                POST On Session    serverest    /usuarios    json=&{payload}
     Set Global Variable        ${user_id}    ${response.json()["_id"]}

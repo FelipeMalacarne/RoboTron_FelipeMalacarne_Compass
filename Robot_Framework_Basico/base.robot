@@ -1,10 +1,11 @@
 *** Settings ***
 Documentation     Arquvo simples para realizar requsisões HTTP em APIs
 Library           RequestsLibrary
-Resource          usuarios_keywords.robot
-Resource          produtos_keywords.robot
-Resource          login_keywords.robot
-Resource          common.robot
+Resource          ./rotas/usuarios_keywords.robot
+Resource          ./rotas/produtos_keywords.robot
+Resource          ./rotas/login_keywords.robot
+Resource          ./rotas/carrinho.keywords.robot
+Resource          ./rotas/common.robot
 *** Variables ***
 ${URL} =     http://localhost:3000
 &{login}=    email=fulano@qa.com    password=teste       
@@ -78,6 +79,24 @@ Cenario: POST Criar Usuario De Massa Estatica 201
     Criar Usuario Estatico Valido
     POST Endpoint /Usuarios
     Validar Status Code "201"
+
+Cenario: Geral Rota Login
+    [Tags]    ROTAS
+    Criar Sessao
+    POST Login User Invalido 401    ## A documentação não menciona o status code 401
+    POST Login User Sem Senha 400
+    POST Login User Sem Email 400
+    POST Login Usuario Valido 400
+    Validar Ter Logado
+
+Cenario: Geral Rota Usuarios
+    [Tags]    ROTAS
+    Criar Sessao
+    GET Endpoint /Usuarios
+    # POST Usuarios User Cadastrado 
+
+
+
 
 *** Keywords ***
 Criar Sessao          
